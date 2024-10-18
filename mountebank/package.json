@@ -1,0 +1,19 @@
+{
+  "name": "mountebank",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "mb --allowInjection --pidfile mb.pid --configfile imposters.ejs"
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "mountebank"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mb": "^1.0.0",
+    "mountebank": "^2.9.1"
+  }
+}

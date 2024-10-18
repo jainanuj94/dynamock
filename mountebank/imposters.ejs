@@ -1,0 +1,15 @@
+{
+    "imposters": [
+      {
+        "port": 2525,
+        "protocol": "http",
+        "defaultResponse": {
+          "statusCode": 404,
+          "body": "No mock found",
+          "headers": {}
+        },
+        "recordRequests": <% if(process.env.MOUNTEBANK_RECORD_REQUESTS === 'true') { %> true <% } else { %> false <% } %>,
+        "stubs": []
+      }
+    ]
+}

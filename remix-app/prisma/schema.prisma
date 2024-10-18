@@ -1,0 +1,39 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model index {
+  id                  Int                   @id @default(autoincrement())
+  serviceName         String                @unique
+  httpMethod          String
+  baseUrl             String?
+  defaultTo           String?
+  path                String
+  uniqueKey           String
+  uniqueKeyLocation   String
+  uniqueKeyPath       String
+  UserResponseMapping UserResponseMapping[]
+}
+
+model UniqueKey {
+  key           String              @id
+  value         String
+  userMappingId Int
+  userMapping   UserResponseMapping @relation(fields: [userMappingId], references: [id])
+}
+
+model UserResponseMapping {
+  id         Int         @id @default(autoincrement())
+  response   String
+  service_id Int
+  service    Service     @relation(fields: [service_id], references: [id])
+  UniqueKey  UniqueKey[]
+}

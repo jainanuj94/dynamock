@@ -1,0 +1,22 @@
+{
+  "name": "dynamock",
+  "version": "1.0.0",
+  "description": "Power your mocks with dynamock",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/jainanuj94/dynamock.git"
+  },
+  "author": "Anuj Jain",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jainanuj94/dynamock/issues"
+  },
+  "homepage": "https://github.com/jainanuj94/dynamock#readme"
+}
