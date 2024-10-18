@@ -1,5 +1,4 @@
 import type {MetaFunction} from "@remix-run/node";
-import Layout from "../../layouts/Layout";
 
 export const meta: MetaFunction = () => {
     return [

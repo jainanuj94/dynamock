@@ -78,8 +78,8 @@ export function Layout() {
                         } md:translate-x-0 md:relative transition-transform duration-200 ease-in-out`}
                     >
                         <Link to={'/service'} className="block">Services</Link>
-                        <a href="#" className="block">About</a>
-                        <a href="#" className="block">Contact</a>
+                        <Link to={'/keys'} className="block">Unique Keys</Link>
+                        <Link to={'/mapping'} className="block">User Response Mappings</Link>
                     </aside>
                 }
 
