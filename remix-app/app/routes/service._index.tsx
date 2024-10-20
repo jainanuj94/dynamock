@@ -24,12 +24,12 @@ export default function index() {
 
             <hr/>
 
-            <div className={"flex flex-wrap justify-between gap-16 m-4"}>
+            <div className={"flex flex-col flex-wrap justify-between gap-16 m-4"}>
                 <Button className={"float-right"}><Link to={'/service/new'}>Add Service</Link></Button>
                 <ul>
                     {services && services.map((service: {id: number, serviceName: string}) => (
                         <li key={service.id}>
-                            {service.serviceName}
+                            {service.id} - {service.serviceName}
                         </li>
                     ))}
                 </ul>

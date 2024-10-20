@@ -4,6 +4,7 @@ import {z} from "zod";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {Input} from "../../components/ui/input";
 import {Button} from "../../components/ui/button";
+import {redirect} from "@remix-run/react";
 
 const AddService = () => {
     const formSchema = z.object({
@@ -41,9 +42,8 @@ const AddService = () => {
                 body: JSON.stringify(values),
             });
 
-            const result = await res.json();
-            console.log(result);
-        }catch (e: any){
+            await res.json();
+        }catch (e: never){
             console.log(e);
         }
     }
