@@ -10,7 +10,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Service {
+model Api {
   id                  Int                   @id @default(autoincrement())
   serviceName         String                @unique
   httpMethod          String
@@ -24,16 +24,19 @@ model Service {
 }
 
 model UniqueKey {
-  key           String              @id
-  value         String
-  userMappingId Int
-  userMapping   UserResponseMapping @relation(fields: [userMappingId], references: [id])
+  key                   String               @id
+  startingValue         String
+  incrementRule         String
+  customRule            String?
+  UserResponseMapping   UserResponseMapping? @relation(fields: [userResponseMappingId], references: [id])
+  userResponseMappingId Int?
 }
 
 model UserResponseMapping {
   id         Int         @id @default(autoincrement())
-  response   String
-  service_id Int
-  service    Service     @relation(fields: [service_id], references: [id])
-  UniqueKey  UniqueKey[]
+  api_id     Int
+  api        Api         @relation(fields: [api_id], references: [id])
+  key        String
+  responses  String
+  keyMappper UniqueKey[]
 }

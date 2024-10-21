@@ -12,7 +12,7 @@ export const loader: LoaderFunction = async () => {
 
 export default function index() {
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const { services } = useLoaderData<typeof loader>();
+    const {services} = useLoaderData<typeof loader>();
 
     return (
         <>
@@ -25,9 +25,11 @@ export default function index() {
             <hr/>
 
             <div className={"flex flex-col flex-wrap justify-between gap-16 m-4"}>
-                <Button className={"float-right"}><Link to={'/service/new'}>Add Service</Link></Button>
+                <Link to={'/service/new'}>
+                    <Button className={"float-right"}>Add Service</Button>
+                </Link>
                 <ul>
-                    {services && services.map((service: {id: number, serviceName: string}) => (
+                    {services && services.map((service: { id: number, serviceName: string }) => (
                         <li key={service.id}>
                             {service.id} - {service.serviceName}
                         </li>
@@ -38,6 +40,6 @@ export default function index() {
 
         </>
     )
-};
+}
 
 // export default index;

@@ -4,20 +4,53 @@ import {z} from "zod";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {Input} from "../../components/ui/input";
 import {Button} from "../../components/ui/button";
-import {redirect} from "@remix-run/react";
+
+const fields = [
+    {
+        fieldName: "serviceName",
+        label: "Service Name"
+    },
+    {
+        fieldName: "httpMethod",
+        label: "Http Method"
+    },
+    {
+        fieldName: "baseUrl",
+        label: "Base URL"
+    },
+    {
+        fieldName: "path",
+        label: "Path"
+    },
+    {
+        fieldName: "uniqueKey",
+        label: "Unique Key"
+    },
+    {
+        fieldName: "uniqueKeyLocation",
+        label: "Unique Key Location"
+    },
+    {
+        fieldName: "uniqueKeyPath",
+        label: "Unique Key Path"
+    },
+    {
+        fieldName: "defaultTo",
+        label: "Default To"
+    }
+]
+const formSchema = z.object({
+    serviceName: z.string().min(1),
+    httpMethod: z.string().min(1),
+    baseUrl: z.string().min(1),
+    defaultTo: z.string().min(1),
+    path: z.string().min(1),
+    uniqueKey: z.string().min(1),
+    uniqueKeyLocation: z.string().min(1),
+    uniqueKeyPath: z.string().min(1),
+})
 
 const AddService = () => {
-    const formSchema = z.object({
-        serviceName: z.string().min(1),
-        httpMethod: z.string().min(1),
-        baseUrl: z.string().min(1),
-        defaultTo: z.string().min(1),
-        path: z.string().min(1),
-        uniqueKey: z.string().min(1),
-        uniqueKeyLocation: z.string().min(1),
-        uniqueKeyPath: z.string().min(1),
-    })
-
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -48,41 +81,6 @@ const AddService = () => {
         }
     }
 
-    const fields = [
-        {
-            fieldName: "serviceName",
-            label: "Service Name"
-        },
-        {
-            fieldName: "httpMethod",
-            label: "Http Method"
-        },
-        {
-            fieldName: "baseUrl",
-            label: "Base URL"
-        },
-        {
-            fieldName: "path",
-            label: "Path"
-        },
-        {
-            fieldName: "uniqueKey",
-            label: "Unique Key"
-        },
-        {
-            fieldName: "uniqueKeyLocation",
-            label: "Unique Key Location"
-        },
-        {
-            fieldName: "uniqueKeyPath",
-            label: "Unique Key Path"
-        },
-        {
-            fieldName: "defaultTo",
-            label: "Default To"
-        }
-    ]
-
     return (
         <>
             <h1 className={"text-gray-900 font-extrabold text-3xl"}>Add New Service</h1>
@@ -108,7 +106,7 @@ const AddService = () => {
                             />
 
                         ))}
-                        <Button className={""} type="submit">Submit</Button>
+                        <Button type="submit">Submit</Button>
                     </form>
                 </Form>
             </div>

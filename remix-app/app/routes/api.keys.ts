@@ -3,9 +3,9 @@ import {prisma} from "../../repository/prismaClient";
 import {ActionFunction} from "@remix-run/node";
 
 export const loader = async () => {
-    const services = await prisma.api.findMany({});
+    const uniqueKeys = await prisma.uniqueKey.findMany({});
     // Respond with JSON data
-    return json({services});
+    return json({uniqueKeys});
 };
 
 export const action: ActionFunction = async ({ request }) => {
@@ -16,13 +16,13 @@ export const action: ActionFunction = async ({ request }) => {
     const data = await request.json();
 
     try {
-        const newService = await prisma.api.create({
+        const newService = await prisma.uniqueKey.create({
             data
         });
 
         return json(newService);
     } catch (error) {
-        console.error("Failed to create service:", error);
-        return json({ error: "Failed to create service" }, { status: 500 });
+        console.error("Failed to create unique key:", error);
+        return json({ error: "Failed to create unique key" }, { status: 500 });
     }
 };
