@@ -1,12 +1,12 @@
 import {ActionFunction, ActionFunctionArgs, json, redirect} from "@remix-run/node";
 import {useActionData} from "@remix-run/react";
 import {useForm} from "react-hook-form";
-import {Form as SchadCnForm, FormControl, FormField, FormItem, FormLabel, FormMessage} from "../../components/ui/form";
-import {Input} from "../../components/ui/input";
+import {Form} from "../../components/ui/form";
 import {Button} from "../../components/ui/button";
 import {z} from "zod";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {useEffect} from "react";
+import InputController from "../../components/controllers/InputController";
 
 export const action: ActionFunction = async ({request}: ActionFunctionArgs) => {
     const formData = await request.formData();
@@ -73,63 +73,32 @@ const AddUniqueKey = () => {
             <h1 className={"text-gray-900 font-extrabold text-3xl"}>Add Unique Key</h1>
             <hr/>
             <div className={"flex items-center justify-between"}>
-                <SchadCnForm  {...form}>
+                <Form  {...form}>
                     <form method={"post"}>
-                        <FormField
-                            control={form.control}
-                            name="key"
-                            render={({field}) => (
-                                <FormItem>
-                                    <FormLabel>Unique Key Name</FormLabel>
-                                    <FormControl>
-                                        <Input placeholder="Unique Key Name" {...field} />
-                                    </FormControl>
-                                    <FormMessage/>
-                                </FormItem>
-                            )}
-                        />
-                        <FormField
-                            control={form.control}
-                            name="startingValue"
-                            render={({field}) => (
-                                <FormItem>
-                                    <FormLabel>Starting Value</FormLabel>
-                                    <FormControl>
-                                        <Input placeholder="Starting value for your key" {...field} />
-                                    </FormControl>
-                                    <FormMessage/>
-                                </FormItem>
-                            )}
-                        />
-                        <FormField
-                            control={form.control}
-                            name="incrementRule"
-                            render={({field}) => (
-                                <FormItem>
-                                    <FormLabel>Increment Rule</FormLabel>
-                                    <FormControl>
-                                        <Input placeholder="Increment Rule" {...field} />
-                                    </FormControl>
-                                    <FormMessage/>
-                                </FormItem>
-                            )}
-                        />
-                        <FormField
-                            control={form.control}
-                            name="customRule"
-                            render={({field}) => (
-                                <FormItem>
-                                    <FormLabel>Custom Rule</FormLabel>
-                                    <FormControl>
-                                        <Input placeholder="Custom Rule" {...field} />
-                                    </FormControl>
-                                    <FormMessage className={"text-red-700"}/>
-                                </FormItem>
-                            )}
-                        />
+                        <InputController
+                            form={form}
+                            label={"Unique Key Name"}
+                            fieldName={"key"}
+                            placeholderLabel={"Unique Key Name"}/>
+                        <InputController
+                            form={form}
+                            label={"Starting Value"}
+                            fieldName={"startingValue"}
+                            placeholderLabel={"Starting value for your key"}/>
+                        <InputController
+                            form={form}
+                            label={"Increment Rule"}
+                            fieldName={"incrementRule"}
+                            placeholderLabel={"Increment Rule"}/>
+                        <InputController
+                            form={form}
+                            label={"Custom Rule"}
+                            fieldName={"customRule"}
+                            placeholderLabel={"Custom Rule"}/>
+
                         <Button type="submit">Submit</Button>
                     </form>
-                </SchadCnForm>
+                </Form>
             </div>
         </>
     )

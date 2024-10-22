@@ -1,9 +1,9 @@
-import {Form, FormControl, FormField, FormItem, FormLabel, FormMessage} from "../../components/ui/form";
+import {Form} from "../../components/ui/form";
 import {useForm} from "react-hook-form";
 import {z} from "zod";
 import {zodResolver} from "@hookform/resolvers/zod";
-import {Input} from "../../components/ui/input";
 import {Button} from "../../components/ui/button";
+import InputController from "../../components/controllers/InputController";
 
 const fields = [
     {
@@ -89,22 +89,13 @@ const AddService = () => {
                 <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col space-y-4 w-fit">
                         { fields.map((obj : {fieldName: string, label: string}, index: number) => (
-                            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                            <FormField
+                            <InputController
                                 key={index}
-                                control={form.control}
-                                name={obj.fieldName}
-                                render={({field}) => (
-                                    <FormItem>
-                                        <FormLabel className={"float-left"}>{obj.label}</FormLabel>
-                                        <FormControl>
-                                            <Input {...field} key={index} className={"text-gray-200 w-full float-end"}/>
-                                        </FormControl>
-                                        <FormMessage className={"text-red-700"}/>
-                                    </FormItem>
-                                )}
+                                label={obj.label}
+                                fieldName={obj.fieldName}
+                                form={form}
+                                placeholderLabel={obj.label}
                             />
-
                         ))}
                         <Button type="submit">Submit</Button>
                     </form>

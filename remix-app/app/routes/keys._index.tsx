@@ -1,6 +1,8 @@
 import {Link, useLoaderData} from "@remix-run/react";
 import {Button} from "~/components/ui/button";
 import {json, LoaderFunction} from "@remix-run/node";
+import {DataTable} from "../../components/DataTable";
+import {uniqueKeyColumns} from "~/types/uniqueKeys";
 
 export const loader: LoaderFunction = async () => {
     const response = await fetch("http://localhost:5173/api/keys");
@@ -25,13 +27,9 @@ const Keys_index = () => {
                 <Link to={'/keys/new'}>
                     <Button className={"float-right"}>Add Unique Key</Button>
                 </Link>
-                <ul>
-                    {uniqueKeys && uniqueKeys.map((uniqueKey: { key: string, startingValue: string }) => (
-                        <li key={uniqueKey.key}>
-                            {uniqueKey.key} - {uniqueKey.startingValue}
-                        </li>
-                    ))}
-                </ul>
+                <div className="container mx-auto py-10">
+                    <DataTable columns={uniqueKeyColumns} data={uniqueKeys}/>
+                </div>
             </div>
         </>
     )

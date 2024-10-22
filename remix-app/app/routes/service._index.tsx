@@ -1,6 +1,8 @@
 import {Button} from "~/components/ui/button";
 import {Link, useLoaderData} from "@remix-run/react";
-import {LoaderFunction, json} from "@remix-run/node";
+import {json, LoaderFunction} from "@remix-run/node";
+import {DataTable} from "../../components/DataTable";
+import {serviceColumns} from "~/types/services";
 
 export const loader: LoaderFunction = async () => {
     const response = await fetch("http://localhost:5173/api/service");
@@ -28,13 +30,9 @@ export default function index() {
                 <Link to={'/service/new'}>
                     <Button className={"float-right"}>Add Service</Button>
                 </Link>
-                <ul>
-                    {services && services.map((service: { id: number, serviceName: string }) => (
-                        <li key={service.id}>
-                            {service.id} - {service.serviceName}
-                        </li>
-                    ))}
-                </ul>
+                <div className="container mx-auto py-10">
+                    <DataTable columns={serviceColumns} data={services}/>
+                </div>
             </div>
 
 
